@@ -1,0 +1,76 @@
+#include <iostream>
+
+class Car
+{
+protected: 
+	std::string company ,  model;
+public:
+	Car(){}
+	
+    Car(std::string _company , std::string _model): company(_company),model(_model)
+    {
+		std::cout << "Car cr: "  << '\n';
+    }
+    virtual ~Car()
+    {
+    		std::cout << "Car dr: "  << '\n';
+	}
+};
+ 
+class PassengerCar : virtual public Car
+{
+public:
+	PassengerCar(){}
+	
+    PassengerCar (std::string _company , std::string _model):Car(_company,_model)
+        
+    {
+		std::cout << "PassengerCar cr: "  << '\n';
+			std::cout << company << model  << '\n';
+    }
+     virtual ~PassengerCar()
+    {
+    		std::cout << "PassengerCar dr: "  << '\n';
+	}
+};
+ 
+class Bus: virtual public Car
+{
+public:
+    Bus(){}
+	
+    Bus (std::string _company , std::string _model):Car(_company,_model)
+        
+    {
+		std::cout << "Bus cr: "  << '\n';
+			std::cout << company << model  << '\n';
+    }
+     virtual ~Bus()
+    {
+    		std::cout << "Bus dr: "  << '\n';
+	}
+};
+ 
+class Minivan : public PassengerCar, public Bus
+{
+public:
+     Minivan(){}
+	
+    Minivan (std::string _company , std::string _model):Car(_company,_model)
+        
+    {
+		std::cout << "Bus cr: "  << '\n';
+			std::cout << company << model  << '\n';
+    }
+     virtual ~Minivan()
+    {
+    		std::cout << "Minivan dr: "  << '\n';
+	}
+};
+int main() {
+	Car car ("Ford"," focus");
+	PassengerCar passergercar("audi"," a4");
+	Bus bus ("UAZ"," Patriot");
+    Minivan m("WV"," Transporter");
+    
+}

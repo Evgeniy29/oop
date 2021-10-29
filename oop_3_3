@@ -1,0 +1,58 @@
+#include<iostream>
+
+ class Fraction {
+     int divisible;
+     int divider;
+     public:
+     Fraction(int de, int dr) : divisible(de), divider(dr) {
+        if (divider == 0)
+            std::cerr<<"zero division error";
+        this -> divisible = divisible;
+        this -> divider = divider;
+    }
+    
+     
+     friend Fraction operator+(const Fraction &l, const Fraction &r);
+     friend std::ostream& operator<<(std::ostream& out, const Fraction& fraction);
+     
+     void setdivider(int inputdivider)
+	{
+		if (inputdivider == 0) inputdivider = 0.00000001;
+		divider = inputdivider;
+	}
+
+	void setdivisible(int inputdivisible)
+	{
+		divisible = inputdivisible;
+	}
+     int get_divisible() const
+    {
+        return divisible;
+    }
+ 
+    int get_divider() const
+    {
+        return divider;
+    }
+	        
+    
+ };
+Fraction operator+(const Fraction& l, const Fraction& r)
+
+          {
+             return Fraction(l.divisible * r.divider + r.divisible * l.divider, l.divider * r.divider);
+         } 
+	std::ostream& operator<<(std::ostream& out, const Fraction& fraction)
+{
+	out << fraction.divisible << "/" << fraction.divider;
+	return out;
+	
+	
+}  
+
+ int main() {
+     Fraction f1(1,5);
+     Fraction f2(3,5);
+    std::cout << f1 + f2 << std::endl; // 4/5
+    
+ }
