@@ -1,0 +1,100 @@
+
+#include <iostream>
+#include <vector>
+
+enum Suits {
+    CLUBS,
+    DIAMONDS,
+    HEARTS,
+    SPADES
+};
+
+enum Ranks {
+    ACE = 1,
+    TWO = 2,
+    THREE = 3,
+    FOUR = 4,
+    FIVE = 5,
+    SIX = 6,
+    SEVEN = 7,
+    EIGHT = 8,
+    NINE = 9,
+    TEN = 10,
+    JACK = 10,
+    QUEEN = 10,
+    KING = 10
+};
+
+class Card
+{
+private:
+    Suits suit ;
+    Ranks rank ;
+    bool isFaceUp ;
+public:
+    
+    Card(Ranks inputRank, Suits inputSuit)
+        : suit(inputSuit), rank(inputRank)
+    {
+        isFaceUp = true;
+    }
+    void Flip()
+    {
+        isFaceUp = !isFaceUp;
+    }
+
+    Ranks getValue()
+    {
+        return rank;
+    }
+};
+
+class Hand
+{
+private:
+    std::vector<Card*> hand;
+public:
+    void Add(Card* input)
+    {
+        hand.push_back(input);
+    }
+
+    void Clear()
+    {
+        hand.clear();
+    }
+
+    int GetValue()
+    {
+        int sum = 0;
+        for (Card* card : hand)
+        {
+            sum += card->getValue();
+        }
+        return sum;
+    }
+};
+
+
+
+class GenericPlayer : public Hand
+{
+private:
+    std::string name;
+public:
+    GenericPlayer(std::string inputName)
+        : name(inputName) {}
+
+    virtual void IsHitting() = 0;
+
+    bool IsBoosted()
+    {
+        if (GetValue() > 21) return true;
+        else return false;
+    }
+
+    void Bust()
+    {
+        std::cout << "\n" << name << " is Bust!\n";
+    }
+};
