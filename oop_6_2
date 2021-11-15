@@ -1,0 +1,15 @@
+#include <iostream>
+
+std::ostream& endll(std::ostream &stream)
+{
+    stream << "\n\n";
+    stream.clear();
+    return stream;
+}
+
+int main()
+{	
+    
+    std::cout << "string_1 " <<  endll << "string_2";
+}
+
