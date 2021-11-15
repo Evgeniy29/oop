@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+int main()
+{
+	setlocale( LC_ALL,"Russian" );
+	int num;
+
+	cout << "Ââåäèòå öåëîå ÷èñëî:";
+
+	while (true)
+	{
+		cin >> num;
+
+		if (cin.good() && cin.peek() == '\n')
+		{
+			cin.ignore(1000, '\n'); 
+			break;
+		}
+		
+		cerr <<"Îøèáêà,åùå ðàç! " ;
+		cin.clear();
+		cin.ignore(1000, '\n'); 
+	}
+
+	cout << "Ââåäåííî öåëîå ÷èñëî " << num << '\n';
+}
