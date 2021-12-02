@@ -1,0 +1,63 @@
+#include<iostream>
+    //Task 2 
+	
+class Ex
+{
+private:
+	double x;
+public:
+	Ex(double input)
+		: x(input) {}
+
+	double getX()
+	{
+		return x;
+	}
+};
+
+class Bar
+{
+private:
+	double y;
+public:
+	Bar()
+		: y(0) {}
+	void set(double a)
+	{
+		if (y + a > 100)
+		{
+			throw Ex(a * y);
+		}
+		else y = a;
+	}
+	double getY()
+	{
+		return y;
+	}
+};
+
+int main()
+{
+		
+	Bar *b = new Bar();
+	int var = 0;
+	try
+	{
+		bool NoZero = true;
+		while (NoZero)
+		{
+			std::cout << "Enter variable: ";
+			std::cin >> var;
+			if (var != 0)
+			{
+				b->set(var);
+			}
+			else NoZero = false;
+		}
+	}
+	catch (Ex &e)
+	{
+		std::cout << "Exception throw  " << e.getX();
+	}
+	delete b;
+}
