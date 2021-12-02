@@ -1,0 +1,24 @@
+#include <iostream>
+
+//Task 1
+int div(int n1, int n2)
+{
+    if (n2 == 0)
+    {
+        throw 505;
+    }
+    return n1 / n2;
+}
+int main()
+{
+	
+	try
+	{  
+    	std::cout << div(5, 0);
+    	std::cout << std::endl;
+	}
+	catch(int i)
+	{
+    	std::cout << "Error number - " << i << " DivisionByZero" << std::endl;
+	}
+}
